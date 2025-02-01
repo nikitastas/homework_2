@@ -3,9 +3,10 @@
 }
 
 .hw {
-
+    display: flex;
+    justify-content: left;
 }
 
 .hwTitle {
-
+    margin: 20px;
 }
