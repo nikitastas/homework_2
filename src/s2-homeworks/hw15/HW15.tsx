@@ -51,15 +51,17 @@ const HW15 = () => {
         setLoading(true)
         getTechs(params)
             .then((res) => {
+                console.log('API Response:', res)
                 if (res && res.data) {
                     console.log(res.data.techs)
-                    console.log(res.data.totalCount)
+                    console.log(res.data)
                     setTechs(res.data.techs)
                     setTotalCount(res.data.totalCount)
                 }
                 setLoading(false)
             })
-          .catch(() => {
+          .catch((e) => {
+              console.error('Ошибка при запросе данных:', e);
               setLoading(false)
           })
     }
@@ -83,7 +85,11 @@ const HW15 = () => {
         sendQuery({sort: params.sort || '', page: +params.page || 1, count: +params.count || 4})
         setPage(+params.page || 1)
         setCount(+params.count || 4)
+        setSort(params.sort || '')
     }, [])
+    useEffect(() => {
+        console.log('Techs:', techs); // Логируем данные
+    }, [techs]);
 
     const mappedTechs = techs.map(t => (
         <div key={t.id} className={s.row}>
